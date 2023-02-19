@@ -1,6 +1,6 @@
 import matplotlib.pylab as plt
 import numpy as np
-from component import *
+from slot import *
 
 class Earth:
     def __init__(self,nrow,ncol):
@@ -11,7 +11,7 @@ class Earth:
     def init_earth(self):
         for row in np.arange(0,self.nrow):
             for col in np.arange(0,self.ncol):
-                self.matrix.append(Component(row,col))
+                self.matrix.append(slot(row,col))
     def check_life(self):
         pass
     
@@ -20,5 +20,13 @@ class Earth:
         plt.grid('on')
         #plt.axis('off')
         for c in self.matrix:
-            plt.plot(c.row, c.col, 'bo', markersize=10)
+            if(c.type == "S"):
+                marker = '8'
+            elif(c.type == "K"):
+                marker = '*'
+            elif(c.type == "L"):
+                marker = "s"
+            else:
+                marker = "P"
+            plt.plot(c.row, c.col, marker, markersize=10)
         plt.show()
