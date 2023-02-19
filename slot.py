@@ -1,11 +1,12 @@
-class Component():
+class slot():
   def __init__(self, row, col):
     self.row = row
     self.col = col
-  def getNeighbor(self):
+    self.type = "S"
+  def get_neighborhood(self):
     pass
-  def move(self, number, earth):
-        neighborComponent = earth.matrix[10*self.row + self.col]
+  def move(self, number):
+        # print(f"row : {self.row} col: {self.col}")
         if(number == 1):
             self.col -= 1
         elif(number == 2):

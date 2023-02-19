@@ -21,7 +21,7 @@ class Interaction():
 def first_motion(earth):
     for c in  earth.matrix:
         rnd = random.randint(1,4)
-        c.move(rnd, earth)
+        c.move(rnd)
 
 earth = Earth(nrow, ncol)
 earth.init_earth()
