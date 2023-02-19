@@ -1,8 +1,18 @@
+import random
+
+def get_rdn_component():
+    rnd = random.randint(1,3)
+    if rnd == 1:
+        return "S"
+    if rnd == 2:
+        return "K"  
+    return "empty"
+
 class slot():
   def __init__(self, row, col):
     self.row = row
     self.col = col
-    self.type = "S"
+    self.component = get_rdn_component() #S, K, L, BL or empty
   def get_neighborhood(self):
     pass
   def move(self, number):
@@ -15,3 +25,4 @@ class slot():
             self.col += 1
         else:
             self.row += 1
+            
