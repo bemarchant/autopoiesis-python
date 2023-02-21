@@ -29,5 +29,4 @@ earth.matrix[22] = slot(4,2, "S")
 earth.matrix[23] = slot(4,3, "S")
 earth.matrix[24] = slot(4,4, "S")
 
-earth.print_earth()
-print(earth.get_slot_by_index(-1,0).component)
+earth.do_production()

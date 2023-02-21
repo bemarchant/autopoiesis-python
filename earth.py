@@ -16,14 +16,14 @@ class Earth:
         pass
     
     def get_slot_by_index(self, row, col):
-        outRight = row*self.size + col < 0
-        outLeft = row*self.size + col >= self.size**2
+        outRow = row < 0 or row >= self.size
+        outCol = col < 0 or col >= self.size
         
-        if outRight or outLeft:
+        if outRow or outCol:
             return slot.get_slot_out()
         else:
              return self.matrix[row*self.size + col]
-
+    
     def get_slots_by_neighboring(self, slot):
         row = slot.row
         col = slot.col
@@ -44,7 +44,8 @@ class Earth:
         neighbor_11 = self.get_slot_by_index(row + 2,col)
         neighbor_12 = self.get_slot_by_index(row,col - 2)
 
-        neighborhood = [neighbor_1, 
+        neighborhood = [
+        neighbor_1, 
         neighbor_2, 
         neighbor_3, 
         neighbor_4, 
@@ -55,7 +56,8 @@ class Earth:
         neighbor_9,
         neighbor_10,
         neighbor_11,
-        neighbor_12]
+        neighbor_12
+        ]
 
         return neighborhood
     
@@ -81,7 +83,12 @@ class Earth:
     def do_third_motion(self):
         pass
     def do_production(self):
-        pass
+        k_list = self.get_slots_by_component("K")
+        
+        for k in k_list:
+            k_neighboring = self.get_slots_by_neighboring(k)
+            
+
     def do_bond(self):
         pass
     def do_rebond(self):
