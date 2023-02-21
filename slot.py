@@ -9,10 +9,14 @@ def get_rdn_component():
     return "empty"
 
 class slot():
-  def __init__(self, row, col):
+  def __init__(self, row, col, component):
     self.row = row
     self.col = col
-    self.component = get_rdn_component() #S, K, L, BL or empty
+    # self.component = get_rdn_component() #S, K, L, BL or empty
+    self.component = component #S, K, L, BL or empty
+  
+  def get_slot_out():
+    return slot(-1,-1,"out")
   def get_neighborhood(self):
     pass
   def move(self, number):
