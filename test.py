@@ -30,7 +30,8 @@ earth.matrix[23] = slot(4,3, "S")
 earth.matrix[24] = slot(4,4, "S")
 
 counter = 0
-while counter < 5:
+while counter < 2:
     earth.print_earth()
+    earth.do_first_motion()
     earth.do_production()
     counter += 1

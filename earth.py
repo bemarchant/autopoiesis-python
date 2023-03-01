@@ -150,11 +150,31 @@ class Earth:
     
     def do_first_motion(self):
         empty_slots = self.get_slots_by_component("empty")
-        
         for slot in empty_slots:
-            print(f"x = {slot.row} y = {slot.col}")
             rnd = random.randint(1,4)
-        pass
+            occupant = self.get_slot_by_neighbornumber(slot, rnd)
+
+            if rnd == 1:
+                neighbor = 12
+            if rnd == 2:
+                neighbor = 9
+            if rnd == 3:
+                neighbor = 10
+            if rnd == 4:
+                neighbor = 11
+            
+            if occupant.component == "empty" or occupant.component == "out":
+                return
+            if occupant.component != "BL":
+                slot.component = occupant.component
+                occupant.component = "empty"
+                self.print_earth()
+
+            if occupant.component == "BL" and self.get_slot_by_neighbornumber(slot, neighbor) == "S":
+                slot.component = self.get_slot_by_neighbornumber(slot, neighbor).component
+                self.get_slot_by_neighbornumber(slot, neighbor).component = "empty"
+                self.print_earth()
+                
     def do_second_motion(self):
         pass
     def do_third_motion(self):
@@ -188,6 +208,10 @@ class Earth:
             rdn_slot_S.component = "empty"
 
     def do_bond(self):
+        free_link_list = self.get_slots_by_component("L")
+        bond_link_list = self.get_slots_by_component("BL")
+
+
         pass
     def do_rebond(self):
         pass
