@@ -7,10 +7,10 @@ class Earth:
        self.size = size
        self.matrix = []
 
-    def init_earth(self):
+    def init_earth(self, component):
         for row in np.arange(0,self.size):
             for col in np.arange(0,self.size):
-                self.matrix.append(slot(row,col, "S"))
+                self.matrix.append(slot(row,col, component))
             
     def check_life(self):
         pass
@@ -150,6 +150,10 @@ class Earth:
     
     def do_first_motion(self):
         empty_slots = self.get_slots_by_component("empty")
+        
+        if len(empty_slots) == self.size**2:
+            return
+        
         for slot in empty_slots:
             rnd = random.randint(1,4)
             occupant = self.get_slot_by_neighbornumber(slot, rnd)
