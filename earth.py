@@ -122,7 +122,7 @@ class Earth:
             adyacent_neighborhood.append(self.get_slot_by_neighbornumber(slot, 8))
             return adyacent_neighborhood      
 
-    def get_slots_by_neighboring(self, slot):
+    def get_neighborhood_by_slot(self, slot):
         neighborhood = [self.get_slot_by_neighbornumber(slot, n) for n in range(0,13)]
         return neighborhood
     
@@ -133,14 +133,19 @@ class Earth:
 
     def do_first_motion(self):
         empty_slots = self.get_slots_by_component("empty")
-        print(empty_slots)
         if len(empty_slots) == self.size**2:
             return
         
         for slot in empty_slots:
+            if slot.component != "empty":
+                continue
             rnd = random.randint(1,4)
             occupant = self.get_slot_by_neighbornumber(slot, rnd)
 
+            # print(f"len of empty_slots : {len(empty_slots)}")
+            # print(f"slot_row : {slot.row} ; slot_col : {slot.col}")
+            # print(f"random.randint(1,4) : {rnd}")
+            # print(f"occupant.component : {occupant.component}")
             if rnd == 1:
                 neighbor = 12
             if rnd == 2:
@@ -151,7 +156,7 @@ class Earth:
                 neighbor = 11
             
             if occupant.component == "empty" or occupant.component == "out":
-                return
+                continue
             if occupant.component != "BL":
                 slot.component = occupant.component
                 occupant.component = "empty"
@@ -170,7 +175,7 @@ class Earth:
         k_list = self.get_slots_by_component("K")
         
         for k in k_list:
-            neighboring = self.get_slots_by_neighboring(k)
+            neighboring = self.get_neighborhood_by_slot(k)
             s_neighboring = list(filter(lambda slot: (slot.component == "S"), neighboring))
 
             candidates = []
