@@ -141,16 +141,12 @@ class Earth:
     
     def get_slots_by_component(self, component):
         earth = self.matrix
-        slots = []
-
-        for slot in earth:
-            if slot.component == component:
-                slots.append(slot)
+        slots = [slot for slot in earth if slot.component == component]
         return slots
-    
+
     def do_first_motion(self):
         empty_slots = self.get_slots_by_component("empty")
-        
+        print(empty_slots)
         if len(empty_slots) == self.size**2:
             return
         
