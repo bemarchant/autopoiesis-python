@@ -123,20 +123,7 @@ class Earth:
             return adyacent_neighborhood      
 
     def get_slots_by_neighboring(self, slot):
-        neighborhood = [
-            self.get_slot_by_neighbornumber(slot, 1),
-            self.get_slot_by_neighbornumber(slot, 2),
-            self.get_slot_by_neighbornumber(slot, 3),
-            self.get_slot_by_neighbornumber(slot, 4),
-            self.get_slot_by_neighbornumber(slot, 5),
-            self.get_slot_by_neighbornumber(slot, 6),
-            self.get_slot_by_neighbornumber(slot, 7),
-            self.get_slot_by_neighbornumber(slot, 8),
-            self.get_slot_by_neighbornumber(slot, 9),
-            self.get_slot_by_neighbornumber(slot, 10),
-            self.get_slot_by_neighbornumber(slot, 11),
-            self.get_slot_by_neighbornumber(slot, 12),
-        ]
+        neighborhood = [self.get_slot_by_neighbornumber(slot, n) for n in range(0,13)]
         return neighborhood
     
     def get_slots_by_component(self, component):
